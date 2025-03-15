@@ -1,0 +1,42 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  text-align: center;
+}
+
+/* Dark Mode */
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.dark-mode .qr-generator,
+.dark-mode .qr-scanner,
+.dark-mode .qr-history {
+  background: #1e1e1e;
+  color: #ffffff;
+}
+
+.dark-mode .qr-generator input,
+.dark-mode .qr-generator select,
+.dark-mode .qr-scanner input {
+  background: #2c2c2c;
+  color: white;
+  border: 1px solid #444;
+}
+.dark-mode .qr-scanner QrReader{
+  border: 1px solid white;
+  
+}
+.dark-mode .theme-toggle {
+  background-color: #ff9800;
+}
+
+.dark-mode .theme-toggle:hover {
+  background-color: #e68900;
+}

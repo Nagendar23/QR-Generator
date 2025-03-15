@@ -1,0 +1,38 @@
+.qr-scanner {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .qr-scanner h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .qr-scanner input[type="file"] {
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .qr-scanner p {
+    font-size: 18px;
+    margin-top: 15px;
+  }
+  
+  .qr-scanner canvas {
+    width: 100%;
+    margin-top: 15px;
+    max-width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  .qr-scanner .cam-inp{
+    border: 1px solid whitesmoke;
+    
+  }
