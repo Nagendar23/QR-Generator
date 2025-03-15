@@ -1,10 +1,42 @@
-import React, { useState } from "react";
-import { QrReader } from "react-qr-reader";
+import React, { useState, useEffect } from "react";
+import { Html5Qrcode } from "html5-qrcode";
 import jsQR from "jsqr";
 import "../Styles/QRScanner.css";
 
 const QRScanner = () => {
   const [scanResult, setScanResult] = useState("");
+  const [html5QrCode, setHtml5QrCode] = useState(null);
+
+  useEffect(() => {
+    // Initialize scanner
+    const scanner = new Html5Qrcode("reader");
+    setHtml5QrCode(scanner);
+
+    return () => {
+      // Cleanup on unmount
+      if (scanner.isScanning) {
+        scanner.stop().catch(err => console.error(err));
+      }
+    };
+  }, []);
+
+  const startScanning = () => {
+    if (!html5QrCode) return;
+
+    html5QrCode.start(
+      { facingMode: "environment" },
+      {
+        fps: 10,
+        qrbox: { width: 250, height: 250 },
+      },
+      (decodedText) => {
+        setScanResult(decodedText);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  };
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -34,19 +66,15 @@ const QRScanner = () => {
     reader.readAsDataURL(file);
   };
 
+  useEffect(() => {
+    startScanning();
+  }, [html5QrCode]);
+
   return (
     <div className="qr-scanner">
       <h2>Scan QR Code</h2>
       <div className="cam-inp">
-      <QrReader
-        onResult={(result, error) => {
-          if (result) {
-            setScanResult(result.text);
-          }
-        }}
-        constraints={{ facingMode: "environment" }}
-        style={{ width: "300px" }}
-      />
+        <div id="reader" style={{ width: "300px" }}></div>
       </div>
       <p><strong>Scanned Result:</strong> {scanResult || "No QR code detected"}</p>
 
